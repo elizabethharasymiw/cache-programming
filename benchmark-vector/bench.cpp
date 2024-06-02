@@ -9,9 +9,18 @@ static void bench_create(benchmark::State &state){
 }
 BENCHMARK(bench_create);
 
+static void bench_reserve(benchmark::State &state){
+  while(state.KeepRunning()) {
+    std::vector<int> v;
+    v.reserve(1);
+  }
+}
+BENCHMARK(bench_reserve);
+
 static void bench_push_back(benchmark::State &state){
   while(state.KeepRunning()) {
     std::vector<int> v;
+    v.reserve(1);
     v.push_back(42);
   }
 }
